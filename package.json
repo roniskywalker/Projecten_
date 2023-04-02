@@ -1,14 +1,17 @@
 {
-  "name": "projectn_",
+  "name": "projecten",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Project Management CLI",
+  "main": "script.js",
   "type": "module",
+  "preferGlobal": true,
+  "bin": "./commands.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": ["projecten","Project", "js", "javascript","CLI"],
+  "author": "Ankan Hazra",
+  "license": "MIT",
   "dependencies": {
     "commander": "^10.0.0",
     "inquirer": "^9.1.5",
