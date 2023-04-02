@@ -8,12 +8,19 @@ import { projectModel } from "./models/project.js";
 
 const addProject = (project) => {
   projectModel.create(project).then((project) => {
-    console.info("Successfully added");
+    console.info("This project is successfully added");
     mongoose.connection.close();
   });
 };
 
-const findProject = (name) => {
+const updateProject = (_id, project) => {
+  projectModel.updateOne({ _id }, project).then((project) => {
+    console.info("This project is successfully updated");
+    mongoose.connection.close();
+  });
+};
+
+const showProject = (name) => {
   const search = new RegExp(name, "i");
   projectModel.find({ name: search }).then((project) => {
     console.info(project);
@@ -22,27 +29,33 @@ const findProject = (name) => {
   });
 };
 
-const updateProject = (_id, project) => {
-  projectModel.updateOne({_id}, project)
-  .then(project =>{
-    console.info('Successfully updated');
-    mongoose.connection.close();
-  })
-}
-
-const removeProject = (_id) => {
-  projectModel.remove({ _id }).then((project) => {
-    console.info("Successfully removed");
+const showAllProject = () => {
+  projectModel.find().then((projects) => {
+    console.info(projects);
+    console.log(`${projects.length} projects`);
     mongoose.connection.close();
   });
 };
 
-const listProject = ()=>{
-  projectModel.find()
-  .then(projects =>{
-    console.info(projects);
-    console.log(`${projects.length} projects`);
+const deleteProject = (_id) => {
+  projectModel.deleteOne({ _id }).then((project) => {
+    console.info("This project is successfully deleted");
     mongoose.connection.close();
-  })
-}
-export { addProject, findProject, updateProject, removeProject, listProject };
+  });
+};
+
+const deleteAllProject = () => {
+  projectModel.deleteMany().then(() => {
+    console.info("All projects are successfully deleted");
+    mongoose.connection.close();
+  });
+};
+
+export {
+  addProject,
+  updateProject,
+  showProject,
+  showAllProject,
+  deleteProject,
+  deleteAllProject,
+};

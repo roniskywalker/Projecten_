@@ -1,7 +1,14 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 
-import { addProject, findProject, updateProject, removeProject, listProject } from "./script.js";
+import {
+  addProject,
+  updateProject,
+  showProject,
+  showAllProject,
+  deleteProject,
+  deleteAllProject,
+} from "./script.js";
 
 program.version("1.0.0").description("Project Management CLI");
 
@@ -58,14 +65,6 @@ program
   });
 
 program
-  .command("find <name>")
-  .alias("f")
-  .description("Find a project")
-  .action((name) => {
-    findProject(name);
-  });
-
-program
   .command("update <_id>")
   .alias("u")
   .description("Update a project")
@@ -74,19 +73,34 @@ program
   });
 
 program
-  .command("remove <_id>")
-  .alias("r")
-  .description("Remove a project")
-  .action((_id) => {
-    removeProject(_id);
+  .command("show <name>")
+  .alias("s")
+  .description("Show a project")
+  .action((name) => {
+    showProject(name);
   });
 
 program
-  .command("list")
-  .alias("l")
-  .description("List all projects")
+  .command("showAll ")
+  .alias("sa")
+  .description("Show all projects")
   .action(() => {
-    listProject();
+    showAllProject();
+  });
+program
+  .command("delete <_id>")
+  .alias("d")
+  .description("Delete a project")
+  .action((_id) => {
+    deleteProject(_id);
+  });
+
+program
+  .command("deleteAll")
+  .alias("da")
+  .description("Delete all projects")
+  .action(() => {
+    deleteAllProject();
   });
 
 program.parse(process.argv);
