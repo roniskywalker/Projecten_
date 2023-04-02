@@ -23,7 +23,7 @@ const findProject = (name) => {
 };
 
 const updateProject = (_id, project) => {
-  projectModel.update({_id}, project)
+  projectModel.updateOne({_id}, project)
   .then(project =>{
     console.info('Successfully updated');
     mongoose.connection.close();
@@ -37,7 +37,7 @@ const removeProject = (_id) => {
   });
 };
 
-const listproject = ()=>{
+const listProject = ()=>{
   projectModel.find()
   .then(projects =>{
     console.info(projects);
@@ -45,4 +45,4 @@ const listproject = ()=>{
     mongoose.connection.close();
   })
 }
-export { addProject, findProject, updateProject, removeProject, listproject };
+export { addProject, findProject, updateProject, removeProject, listProject };

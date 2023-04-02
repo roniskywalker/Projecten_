@@ -1,9 +1,9 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 
-import { addProject, findProject, updateProject, removeProject, listproject } from "./script.js";
+import { addProject, findProject, updateProject, removeProject, listProject } from "./script.js";
 
-program.version("1.0.0").description("Project Management System");
+program.version("1.0.0").description("Project Management CLI");
 
 const questions = [
   {
@@ -65,6 +65,28 @@ program
     findProject(name);
   });
 
+program
+  .command("update <_id>")
+  .alias("u")
+  .description("Update a project")
+  .action((_id) => {
+    prompt(questions).then((answers) => updateProject(_id, answers));
+  });
 
+program
+  .command("remove <_id>")
+  .alias("r")
+  .description("Remove a project")
+  .action((_id) => {
+    removeProject(_id);
+  });
+
+program
+  .command("list")
+  .alias("l")
+  .description("List all projects")
+  .action(() => {
+    listProject();
+  });
 
 program.parse(process.argv);
