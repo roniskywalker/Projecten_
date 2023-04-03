@@ -2,11 +2,13 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 
+const prompt = inquirer.createPromptModule();
+
 import {
-  addProject,
+  createProject,
+  readProject,
+  readAllProject,
   updateProject,
-  showProject,
-  showAllProject,
   deleteProject,
   deleteAllProject,
 } from "./script.js";
@@ -55,14 +57,29 @@ const questions = [
     message: "What is end date of this project?",
   },
 ];
-const prompt = inquirer.createPromptModule();
 
 program
-  .command("add")
-  .alias("a")
-  .description("Add a project")
+  .command("create")
+  .alias("c")
+  .description("Create a project")
   .action(() => {
-    prompt(questions).then((answers) => addProject(answers));
+    prompt(questions).then((answers) => createProject(answers));
+  });
+
+program
+  .command("read <name>")
+  .alias("r")
+  .description("Read a project")
+  .action((name) => {
+    readProject(name);
+  });
+
+program
+  .command("readAll ")
+  .alias("ra")
+  .description("Read all projects")
+  .action(() => {
+    readAllProject();
   });
 
 program
@@ -73,21 +90,6 @@ program
     prompt(questions).then((answers) => updateProject(_id, answers));
   });
 
-program
-  .command("show <name>")
-  .alias("s")
-  .description("Show a project")
-  .action((name) => {
-    showProject(name);
-  });
-
-program
-  .command("showAll ")
-  .alias("sa")
-  .description("Show all projects")
-  .action(() => {
-    showAllProject();
-  });
 program
   .command("delete <_id>")
   .alias("d")

@@ -6,21 +6,14 @@ async function main() {
 
 import { projectModel } from "./models/project.js";
 
-const addProject = (project) => {
+const createProject = (project) => {
   projectModel.create(project).then((project) => {
-    console.info("This project is successfully added");
+    console.info("This project is successfully created");
     mongoose.connection.close();
   });
 };
 
-const updateProject = (_id, project) => {
-  projectModel.updateOne({ _id }, project).then((project) => {
-    console.info("This project is successfully updated");
-    mongoose.connection.close();
-  });
-};
-
-const showProject = (name) => {
+const readProject = (name) => {
   const search = new RegExp(name, "i");
   projectModel.find({ name: search }).then((project) => {
     console.info(project);
@@ -29,10 +22,17 @@ const showProject = (name) => {
   });
 };
 
-const showAllProject = () => {
+const readAllProject = () => {
   projectModel.find().then((projects) => {
     console.info(projects);
     console.log(`${projects.length} projects`);
+    mongoose.connection.close();
+  });
+};
+
+const updateProject = (_id, project) => {
+  projectModel.updateOne({ _id }, project).then((project) => {
+    console.info("This project is successfully updated");
     mongoose.connection.close();
   });
 };
@@ -52,10 +52,10 @@ const deleteAllProject = () => {
 };
 
 export {
-  addProject,
+  createProject,
+  readProject,
+  readAllProject,
   updateProject,
-  showProject,
-  showAllProject,
   deleteProject,
   deleteAllProject,
 };
