@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 import { program } from "commander";
 import inquirer from "inquirer";
+import chalk from "chalk";
+import gradient from "gradient-string";
+import chalkAnimation from "chalk-animation";
+import figlet from "figlet";
 
 const prompt = inquirer.createPromptModule();
 
 import {
+  welcome,
   createProject,
   readProject,
   readAllProject,
@@ -19,42 +24,49 @@ const questions = [
   {
     type: "input",
     name: "name",
-    message: "What is the name of the project?",
+    message: `What is the ${chalk.bgBlue("NAME")} of the project? `,
   },
   {
     type: "input",
     name: "description",
-    message: "What is the project about?",
+    message: `What is ${chalk.bgWhite("DESCRIPTION")} of the project? `,
   },
   {
-    type: "input",
+    type: "list",
     name: "language",
-    message: "Which language is majorly used for this project?",
+    message: `Which ${chalk.bgGreen(
+      "LANGUAGE"
+    )} is majorly used for this project? `,
+    choices: [
+      '','Python','C++','Java','Javascript','HTML','CSS','Typescript','Swift','Kotlin','C#','Go','Rust','Bash','SQL','NoSQL','Matlab','PHP'
+    ]
   },
   {
     type: "input",
     name: "filePath",
-    message: "Please write down the file path of this project",
+    message: `Please write down the ${chalk.bgCyan(
+      "FILE PATH"
+    )} of this project `,
   },
   {
     type: "input",
     name: "deployedLink",
-    message: "Please mention the deployed link if you have",
+    message: `Please mention the ${chalk.bgRed("DEPLOYED LINK")} `,
   },
   {
     type: "input",
     name: "githubLink",
-    message: "please add the github link",
+    message: `please add the ${chalk.bgYellow("GITHUB LINK")} `,
   },
   {
     type: "input",
     name: "startDate",
-    message: "What is start date of this project?",
+    message: `What is ${chalk.bgBlueBright("START DATE")} of this project? `,
   },
   {
     type: "input",
     name: "endDate",
-    message: "What is end date of this project?",
+    message: `What is ${chalk.bgRedBright("END DATE")} of this project? `,
   },
 ];
 
@@ -62,7 +74,8 @@ program
   .command("create")
   .alias("c")
   .description("Create a project")
-  .action(() => {
+  .action(async () => {
+    await welcome();
     prompt(questions).then((answers) => createProject(answers));
   });
 
@@ -70,7 +83,8 @@ program
   .command("read <name>")
   .alias("r")
   .description("Read a project")
-  .action((name) => {
+  .action(async (name) => {
+    await welcome();
     readProject(name);
   });
 
@@ -78,7 +92,8 @@ program
   .command("readAll ")
   .alias("ra")
   .description("Read all projects")
-  .action(() => {
+  .action(async () => {
+    await welcome();
     readAllProject();
   });
 
@@ -86,7 +101,8 @@ program
   .command("update <_id>")
   .alias("u")
   .description("Update a project")
-  .action((_id) => {
+  .action(async (_id) => {
+    await welcome();
     prompt(questions).then((answers) => updateProject(_id, answers));
   });
 
@@ -94,7 +110,8 @@ program
   .command("delete <_id>")
   .alias("d")
   .description("Delete a project")
-  .action((_id) => {
+  .action(async (_id) => {
+    await welcome();
     deleteProject(_id);
   });
 
@@ -102,7 +119,8 @@ program
   .command("deleteAll")
   .alias("da")
   .description("Delete all projects")
-  .action(() => {
+  .action(async () => {
+    await welcome();
     deleteAllProject();
   });
 
