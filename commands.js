@@ -2,9 +2,6 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 import chalk from "chalk";
-import gradient from "gradient-string";
-import chalkAnimation from "chalk-animation";
-import figlet from "figlet";
 
 const prompt = inquirer.createPromptModule();
 
@@ -38,7 +35,7 @@ const questions = [
       "LANGUAGE"
     )} is majorly used for this project? `,
     choices: [
-      '','Python','C++','Java','Javascript','HTML','CSS','Typescript','Swift','Kotlin','C#','Go','Rust','Bash','SQL','NoSQL','Matlab','PHP'
+      '','Javascript','Python','C++','Java','HTML','CSS','Typescript','Swift','Kotlin','C#','Go','Rust','Bash','SQL','NoSQL','Matlab','PHP'
     ]
   },
   {

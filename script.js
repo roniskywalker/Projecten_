@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import gradient from "gradient-string";
 import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
@@ -20,7 +19,8 @@ const welcome = async () => {
 
 const createProject = (project) => {
   projectModel.create(project).then((project) => {
-    console.info("This project is successfully created");
+    figlet(`successfully created`, (err, data) => {
+    console.log(gradient.pastel.multiline(data) + '\n');});
     mongoose.connection.close();
   });
 };
@@ -29,7 +29,9 @@ const readProject = (name) => {
   const search = new RegExp(name, "i");
   projectModel.find({ name: search }).then((project) => {
     console.info(project);
-    console.log(`${project.length} matches`);
+    figlet(`${project.length} matches`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
@@ -37,28 +39,36 @@ const readProject = (name) => {
 const readAllProject = () => {
   projectModel.find().then((projects) => {
     console.info(projects);
-    console.log(`${projects.length} projects`);
+    figlet(`${projects.length} projects`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
 
 const updateProject = (_id, project) => {
   projectModel.updateOne({ _id }, project).then((project) => {
-    console.info("This project is successfully updated");
+    figlet(`successfully updated`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
 
 const deleteProject = (_id) => {
   projectModel.deleteOne({ _id }).then((project) => {
-    console.info("This project is successfully deleted");
+    figlet(`successfully deleted`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
 
 const deleteAllProject = () => {
   projectModel.deleteMany().then(() => {
-    console.info("All projects are successfully deleted");
+    figlet(`successfully deleted all`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
