@@ -2,6 +2,7 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 import chalk from "chalk";
+import gradient from "gradient-string";
 
 const prompt = inquirer.createPromptModule();
 
@@ -15,7 +16,9 @@ import {
   deleteAllProject,
 } from "./script.js";
 
-program.version("1.0.0").description("Project Management CLI");
+program
+  .version(`${chalk.bgCyan("1.0.3")}`)
+  .description(gradient.rainbow(`Project_Management_CLI`));
 
 const questions = [
   {
@@ -26,7 +29,7 @@ const questions = [
   {
     type: "input",
     name: "description",
-    message: `What is ${chalk.bgWhite("DESCRIPTION")} of the project? `,
+    message: `What is ${chalk.bgRedBright("DESCRIPTION")} of the project? `,
   },
   {
     type: "list",
@@ -58,19 +61,19 @@ const questions = [
   {
     type: "input",
     name: "startDate",
-    message: `What is ${chalk.bgBlueBright("START DATE")} of this project? `,
+    message: `What is ${chalk.bgGreenBright("START DATE")} of this project? `,
   },
   {
     type: "input",
     name: "endDate",
-    message: `What is ${chalk.bgRedBright("END DATE")} of this project? `,
+    message: `What is ${chalk.bgYellowBright("END DATE")} of this project? `,
   },
 ];
 
 program
   .command("create")
   .alias("c")
-  .description("Create a project")
+  .description(`${chalk.bgYellow("Create a project")}`)
   .action(async () => {
     await welcome();
     prompt(questions).then((answers) => createProject(answers));
@@ -79,7 +82,7 @@ program
 program
   .command("read <name>")
   .alias("r")
-  .description("Read a project")
+  .description(`${chalk.bgBlue("Read a project")}`)
   .action(async (name) => {
     await welcome();
     readProject(name);
@@ -88,7 +91,7 @@ program
 program
   .command("readAll ")
   .alias("ra")
-  .description("Read all projects")
+  .description(`${chalk.bgBlueBright("Read all projects")}`)
   .action(async () => {
     await welcome();
     readAllProject();
@@ -97,7 +100,7 @@ program
 program
   .command("update <_id>")
   .alias("u")
-  .description("Update a project")
+  .description(`${chalk.bgGreen("Update a project")}`)
   .action(async (_id) => {
     await welcome();
     prompt(questions).then((answers) => updateProject(_id, answers));
@@ -106,7 +109,7 @@ program
 program
   .command("delete <_id>")
   .alias("d")
-  .description("Delete a project")
+  .description(`${chalk.bgRed("Delete a project")}`)
   .action(async (_id) => {
     await welcome();
     deleteProject(_id);
@@ -115,7 +118,7 @@ program
 program
   .command("deleteAll")
   .alias("da")
-  .description("Delete all projects")
+  .description(`${chalk.bgRedBright("Delete all projects")}`)
   .action(async () => {
     await welcome();
     deleteAllProject();
