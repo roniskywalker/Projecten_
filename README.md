@@ -19,6 +19,13 @@ Project Management CLI❤‍🔥
 ```bash
   npm i projecten
 ```
+
+👉Run
+
+```bash
+  npx projecten
+```
+  
     
 ## Run Locally🕹️
 
