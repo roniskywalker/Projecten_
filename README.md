@@ -4,9 +4,9 @@ Project Management CLI❤‍🔥
 
 ## Features🪄
 
-- It supports CRUD operation on the project list💫
+- It supports CRUD operation on the projects, tasks & issues list💫
 - Multicolored stylish font is implemented💯 
-- Quickly open a project path can be done using 'filePath'⚡
+- Effectively fast access to the gitHub link⚡
 - Alias name can be used like. c (create), r (read)✨
 - It is so interactive🎨
 

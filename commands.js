@@ -10,6 +10,7 @@ import {
   welcome,
   createProject,
   readProject,
+  readChoice,
   readAllProject,
   updateProject,
   deleteProject,
@@ -50,7 +51,7 @@ const questions = [
   {
     type: "list",
     name: "language",
-    message: `Which ${chalk.bgGreen("LANGUAGE")} is required to solve this? `,
+    message: `Which ${chalk.bgBlueBright("LANGUAGE")} is required to solve this? `,
     choices: [
       "",
       "Javascript",
@@ -80,7 +81,7 @@ const questions = [
   {
     type: "input",
     name: "assignDate",
-    message: `What is ${chalk.bgGreenBright(
+    message: `What is ${chalk.bgRedBright(
       "ASSIGNED DATE"
     )} for the task or issue? `,
   },
@@ -107,6 +108,15 @@ program
   .action(async (projectName) => {
     await welcome();
     readProject(projectName);
+  });
+
+program
+  .command("readChoice <choice>")
+  .alias("rc")
+  .description(`${chalk.bgBlue("Read a choice")}`)
+  .action(async (choice) => {
+    await welcome();
+    readChoice(choice);
   });
 
 program

@@ -1,8 +1,14 @@
 import mongoose from "mongoose";
 
 const projectSchema = mongoose.Schema({
-  projectName: String,
-  employee: String,
+  projectName: {
+    type: String,
+    require: true,
+  },
+  employee: {
+    type: String,
+    require: true,
+  },
   choice: {
     type: String,
     require: true,

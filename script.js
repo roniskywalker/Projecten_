@@ -37,6 +37,17 @@ const readProject = (projectName) => {
   });
 };
 
+const readChoice = (choice) => {
+  const search = new RegExp(choice, "i");
+  projectModel.find({ choice: search }).then((project) => {
+    console.info(project);
+    figlet(`${project.length} matches`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
+    mongoose.connection.close();
+  });
+};
+
 const readAllProject = () => {
   projectModel.find().then((projects) => {
     console.info(projects);
@@ -78,6 +89,7 @@ export {
   welcome,
   createProject,
   readProject,
+  readChoice,
   readAllProject,
   updateProject,
   deleteProject,
