@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 
 const projectSchema = mongoose.Schema({
-  name: {
+  projectName: String,
+  employee: String,
+  choice: {
+    type: String,
+    require: true,
+  },
+  TaskOrIssueName: {
     type: String,
     require: true,
   },
@@ -10,11 +16,9 @@ const projectSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  filePath: String,
-  deployedLink: String,
   githubLink: String,
-  startDate: String,
-  endDate: String,
+  assignDate: String,
+  deadline: String,
 });
 
 const projectModel = mongoose.model("Project", projectSchema);

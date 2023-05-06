@@ -23,75 +23,96 @@ program
 const questions = [
   {
     type: "input",
-    name: "name",
-    message: `What is the ${chalk.bgBlue("NAME")} of the project? `,
+    name: "projectName",
+    message: `What is the name of the ${chalk.bgCyan("PROJECT")}?`,
+  },
+  {
+    type: "input",
+    name: "employee",
+    message: `Which ${chalk.bgRed("EMPLOYEE")} has been assigned?`,
+  },
+  {
+    type: "list",
+    name: "choice",
+    message: `What is the ${chalk.bgGreen("TYPE")}? `,
+    choices: ["", "Task", "Issue"],
+  },
+  {
+    type: "input",
+    name: "taskOrIssueName",
+    message: `What is the ${chalk.bgBlue("TASK or ISSUE")}? `,
   },
   {
     type: "input",
     name: "description",
-    message: `What is ${chalk.bgRedBright("DESCRIPTION")} of the project? `,
+    message: `What is the ${chalk.bgRedBright("DESCRIPTION")}? `,
   },
   {
     type: "list",
     name: "language",
-    message: `Which ${chalk.bgGreen(
-      "LANGUAGE"
-    )} is majorly used for this project? `,
+    message: `Which ${chalk.bgGreen("LANGUAGE")} is required to solve this? `,
     choices: [
-      '','Javascript','Python','C++','Java','HTML','CSS','Typescript','Swift','Kotlin','C#','Go','Rust','Bash','SQL','NoSQL','Matlab','PHP'
-    ]
-  },
-  {
-    type: "input",
-    name: "filePath",
-    message: `Please write down the ${chalk.bgCyan(
-      "FILE PATH"
-    )} of this project `,
-  },
-  {
-    type: "input",
-    name: "deployedLink",
-    message: `Please mention the ${chalk.bgRed("DEPLOYED LINK")} `,
+      "",
+      "Javascript",
+      "Python",
+      "C++",
+      "Java",
+      "HTML",
+      "CSS",
+      "Typescript",
+      "Swift",
+      "Kotlin",
+      "C#",
+      "Go",
+      "Rust",
+      "Bash",
+      "SQL",
+      "NoSQL",
+      "Matlab",
+      "PHP",
+    ],
   },
   {
     type: "input",
     name: "githubLink",
-    message: `please add the ${chalk.bgYellow("GITHUB LINK")} `,
+    message: `What is the ${chalk.bgYellow("GITHUB LINK")}?`,
   },
   {
     type: "input",
-    name: "startDate",
-    message: `What is ${chalk.bgGreenBright("START DATE")} of this project? `,
+    name: "assignDate",
+    message: `What is ${chalk.bgGreenBright(
+      "ASSIGNED DATE"
+    )} for the task or issue? `,
   },
   {
     type: "input",
-    name: "endDate",
-    message: `What is ${chalk.bgYellowBright("END DATE")} of this project? `,
+    name: "deadline",
+    message: `What is ${chalk.bgYellowBright("Dealine")}? `,
   },
 ];
 
 program
   .command("create")
   .alias("c")
-  .description(`${chalk.bgYellow("Create a project")}`)
+  .description(`${chalk.bgYellow("Create a task or issue")}`)
   .action(async () => {
     await welcome();
     prompt(questions).then((answers) => createProject(answers));
   });
 
 program
-  .command("read <name>")
+  .command("read <projectName>")
   .alias("r")
-  .description(`${chalk.bgBlue("Read a project")}`)
-  .action(async (name) => {
+  .description(`${chalk.bgBlue("Read a task or issue")}`)
+  .action(async (projectName) => {
     await welcome();
-    readProject(name);
+    readProject(projectName);
   });
 
 program
   .command("readAll ")
   .alias("ra")
-  .description(`${chalk.bgBlueBright("Read all projects")}`)
+  .description(`${chalk.bgBlueBright("Read all tasks or issues")}`)
   .action(async () => {
     await welcome();
     readAllProject();
@@ -100,7 +121,7 @@ program
 program
   .command("update <_id>")
   .alias("u")
-  .description(`${chalk.bgGreen("Update a project")}`)
+  .description(`${chalk.bgGreen("Update a task or issue")}`)
   .action(async (_id) => {
     await welcome();
     prompt(questions).then((answers) => updateProject(_id, answers));
@@ -109,7 +130,7 @@ program
 program
   .command("delete <_id>")
   .alias("d")
-  .description(`${chalk.bgRed("Delete a project")}`)
+  .description(`${chalk.bgRed("Delete a task or issue")}`)
   .action(async (_id) => {
     await welcome();
     deleteProject(_id);
@@ -118,7 +139,7 @@ program
 program
   .command("deleteAll")
   .alias("da")
-  .description(`${chalk.bgRedBright("Delete all projects")}`)
+  .description(`${chalk.bgRedBright("Delete all tasks or issues")}`)
   .action(async () => {
     await welcome();
     deleteAllProject();

@@ -15,19 +15,20 @@ const welcome = async () => {
   const rainbowTitle = chalkAnimation.rainbow("\nHey there, I am Projecten!\n");
   await sleep();
   rainbowTitle.stop();
-}
+};
 
 const createProject = (project) => {
   projectModel.create(project).then((project) => {
     figlet(`successfully created`, (err, data) => {
-    console.log(gradient.pastel.multiline(data) + '\n');});
+      console.log(gradient.pastel.multiline(data) + "\n");
+    });
     mongoose.connection.close();
   });
 };
 
-const readProject = (name) => {
-  const search = new RegExp(name, "i");
-  projectModel.find({ name: search }).then((project) => {
+const readProject = (projectName) => {
+  const search = new RegExp(projectName, "i");
+  projectModel.find({ projectName: search }).then((project) => {
     console.info(project);
     figlet(`${project.length} matches`, (err, data) => {
       console.log(gradient.pastel.multiline(data) + "\n");
