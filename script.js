@@ -51,7 +51,7 @@ const readChoice = (choice) => {
 const readAllProject = () => {
   projectModel.find().then((projects) => {
     console.info(projects);
-    figlet(`${projects.length} projects`, (err, data) => {
+    figlet(`${projects.length} tasks or issues`, (err, data) => {
       console.log(gradient.pastel.multiline(data) + "\n");
     });
     mongoose.connection.close();

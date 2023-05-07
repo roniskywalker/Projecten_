@@ -6,7 +6,7 @@ Project Management CLI❤‍🔥
 
 - It supports CRUD operation on the projects, tasks & issues list💫
 - Multicolored stylish font is implemented💯 
-- Effectively fast access to the gitHub link⚡
+- Effectively fast access to the gitHub link is also added⚡
 - Alias name can be used like. c (create), r (read)✨
 - It is so interactive🎨
 
@@ -62,7 +62,7 @@ Project Management CLI❤‍🔥
 
 ## Demo🔮
 
-![Screenshot_20230404_174433](https://user-images.githubusercontent.com/97012708/229789014-850c8a75-b501-4372-b3d2-56ff1f822652.png)
+![Screenshot_20230507_150428](https://user-images.githubusercontent.com/97012708/236669629-2e8576f6-9e99-4bc0-8cc5-2a641087e0ec.png)
 
 
 ## Thank You😀
