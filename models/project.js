@@ -13,7 +13,7 @@ const projectSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  TaskOrIssueName: {
+  taskOrIssueName: {
     type: String,
     require: true,
   },
